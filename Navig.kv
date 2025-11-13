@@ -1,0 +1,38 @@
+<vig>:
+    MDBottomNavigation:
+        id:i
+        panel_color:[1,1,1,1]
+
+        MDBottomNavigationItem:
+            name:'1'
+            text:'Data Entry'
+            icon:'book'
+
+            Home:
+        MDBottomNavigationItem:
+            id:second
+            name:'2'
+            text:'Overall'
+            icon:'launch'
+            on_enter:root.open()
+            on_leave:second.clear_widgets()
+
+        MDBottomNavigationItem:
+            id:th
+            name:'3'
+            text:'Progress'
+            icon:'chart-line' 
+            
+            on_enter:root.open_2()
+            on_leave:th.clear_widgets()
+        
+        
+        MDBottomNavigationItem:
+            name:'4'
+            text:'sign-out'
+            icon:'logout' 
+            on_enter:root.sm.current ='log';root.clear();i.switch_tab('1')
+
+
+
+        

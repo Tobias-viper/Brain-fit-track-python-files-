@@ -1,0 +1,74 @@
+#:import dp kivy.metrics.dp
+#:import Window kivy.core.window.Window
+#:import AKSpinnerFoldingCube kivymd_extensions.akivymd.uix.spinners.AKSpinnerFoldingCube
+<login>:
+    Screen:
+        name:'log'
+        
+        Image:
+            source:'IMG-20220428-WA0050.jpg'
+
+        RelativeLayout:
+            pos_hint:{'center_y':.5}
+            Lay:
+                id:Username
+                pos_hint:{'x':.05,'y':.9}
+                icon:'account'
+                hint_text:'Enter Your Username' 
+            Input:
+                obj:self.children[1]
+                id:password
+                pos_hint:{'x':.05,'y':.8} 
+                text_color:[1,0,0,1]
+                icon:'account-key'
+                hint_text:'Enter Your Password'  
+            MDRaisedButton:
+                text:'Log in'
+                pos_hint:{'x':.05,'y':.7}
+                ripple_duration_out:.5
+                on_release:app.call()
+            MDFlatButton:
+                text:'Do not have an account?\nClick here to open a new one.'
+                pos_hint:{'center_x':.5,'center_y':.2}
+                _no_ripple_effect:True
+                on_release:app.change()
+
+<Lay>:
+    hint_text:''
+    icon:'' 
+    size_hint:None,None 
+    size:Window.width/1.15,'40dp'
+    elevation:dp(20)
+    padding:['5dp',0,'5dp',0]
+    spacing:'8dp'
+    MDIcon:
+        theme_text_color:'Custom'
+        text_color:[1,0,0,1]
+        icon:root.icon
+        pos_hint:{'center_y':.5}
+    MDTextField:
+        id:txt
+        hint_text:root.hint_text if  self.focus==False and len(self.text)==0 else ''
+        pos_hint:{'center_y':.5}
+        line_anim:False
+        line_color_focus:[1,1,1,1]
+        theme_text_color:'Custom'
+        line_color_normal:self.line_color_focus
+        hint_text_color_focus:[0,0,0,.5]
+<Input>:
+    MDIconButton:
+        icon:'eye'
+        on_release:
+            self.icon='eye-off' if self.icon == 'eye' else 'eye'
+            root.obj.password=False if root.obj.password  else True
+        pos_hint:{'center_y':.5}
+
+<CustomSpinner@FloatLayout>:
+    
+    AKSpinnerFoldingCube:
+        angle:135
+        id:spin
+        color:[1,0,0,.8]
+        spinner_size:dp(100)
+        active:True
+        pos_hint:{'center_x':.5,'center_y':.5}

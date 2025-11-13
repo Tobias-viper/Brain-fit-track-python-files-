@@ -1,0 +1,52 @@
+#:import AKSpinnerFoldingCube kivymd_extensions.akivymd.uix.spinners.AKSpinnerFoldingCube
+<Up>:
+    FitImage:
+        source:'IMG-20220428-WA0050.jpg'
+    RelativeLayout:
+        Lay:
+            pos_hint:{'x':.05,'y':.7} 
+            icon:'account'
+            hint_text:'Full Name'
+        Lay:
+            pos_hint:{'x':.05,'y':.6} 
+            icon:'email'
+            id:email
+            hint_text:'Email'
+          
+        Input:
+            obj:self.children[1]
+            pos_hint:{'x':.05,'y':.5} 
+            icon:'account-key'
+            hint_text:'Password'
+            id:password
+        Input:
+            obj:self.children[1]
+            pos_hint:{'x':.05,'y':.4}  
+            icon:'account-key'
+            hint_text:'Confirm Password'
+            id:conf
+        MDRaisedButton:
+            text:'Sign Up'
+            pos_hint:{'center_x':.45,'center_y':.3}
+            ripple_duration_out:.5
+            #ripple_scale:0
+            on_release:root.register(email.children[0].text,password.children[1].text,conf.children[1].text)
+        MDFlatButton:
+            text:'Log in Here'
+            pos_hint:{'center_x':.45,'center_y':.2}
+            _no_ripple_effect:True
+            on_release:root.change()
+
+<CustomSpinner@FloatLayout>:
+    
+    AKSpinnerFoldingCube:
+        angle:135
+        id:spin
+        color:[1,0,0,.8]
+        spinner_size:dp(100)
+        active:True
+        pos_hint:{'center_x':.5,'center_y':.5}
+
+
+
+
